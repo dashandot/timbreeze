@@ -1,0 +1,456 @@
+// Variables
+$copper: #daa45f;
+$blue: #333c44;
+$white: #f4f4f4;
+$black: #1e1e1e;
+$noe: 'Noe Display';
+$circ: 'Circular Book';
+
+$content-gutter: 0 30px 0 45px;
+
+// Neat
+@import '_grid-settings.scss';
+@import 'neat/neat.scss';
+
+// Custom Mixins
+@import '_mixins.scss';
+@import 'normalize.scss';
+
+// Vendor CSS
+// @import 'vendor/_angled-edges.scss';
+// @import 'vendor/_burger.scss';
+@import 'vendor/_bourbon.scss';
+// @import 'vendor/_responsive-nav.scss';
+
+
+@font-face {
+	font-family: 'Circular Book';
+	src: url('assets/font/Circular-Book.eot');
+	src: url('assets/font/Circular-Book.eot?#iefix') format('embedded-opentype'),
+		url('assets/font/Circular-Book.woff') format('woff'),
+		url('assets/font/Circular-Book.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Noe Display';
+	src: url('assets/font/NoeDisplay-Bold.eot');
+	src: url('assets/font/NoeDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+		url('assets/font/NoeDisplay-Bold.woff') format('woff'),
+		url('assets/font/NoeDisplay-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+
+// Layouts
+// Modules
+
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+  font-size: 48.5%;
+  @media screen and (min-width:$medium-break) {
+    & {
+      font-size: 62.5%;
+    }
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  outline-color: $copper;
+}
+
+body {
+  background: $blue;
+  font-family: $circ;
+  color: $white;
+  @include font-size(1.6)
+  animation: fadeIn 1500ms ease-in forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  @include outer-container;
+  padding: $content-gutter;
+}
+
+p {
+  font-family: $circ;
+  @include font-size(1.6);
+  line-height: 1.6;
+}
+
+a {
+  font-family: $circ;
+  text-decoration: none;
+  color: $copper;
+  @include font-size(1.6);
+  border-bottom: 1px solid transparent;
+  transition: 200ms ease-in;
+  &:hover,
+  &:focus {
+    color: $white;
+    border-bottom: 1px solid $copper;
+    transition: 200ms ease-in;
+  }
+}
+
+img.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h2 {
+  font-family: $noe;
+  @include font-size(3.4);
+  line-height: 1.375;
+  color: $copper;
+  position: relative;
+  @media screen and (min-width:420px) {
+    &::after {
+      content: '';
+      width: 35%;
+      height: 1px;
+      background: $copper;
+      position: absolute;
+      top: 19px;
+      right: 0;
+    }
+  }
+  @media screen and (min-width:$medium-break) {
+    &::after {
+      content: '';
+      width: 60%;
+      height: 1px;
+      background: $copper;
+      position: absolute;
+      top: 25px;
+      right: 0;
+    }
+  }
+}
+
+h3 {
+  font-family: $circ;
+  @include font-size(2.1);
+  line-height: 1.375;
+  font-weight: normal;
+}
+blockquote {
+  padding: 18px;
+  margin: 24px 12px;
+  border-left: 1px solid $copper;
+  display: block;
+  line-height: 1.6;
+  @include font-size(1.8);
+}
+
+nav {
+  position: fixed;
+  width: 400px;
+  bottom: 0px;
+  left: 20px;
+  transform-origin: left;
+  transform: rotate(-90deg);
+  z-index: 10;
+  opacity: 0;
+  @media screen and (min-width:$medium-break) {
+    width: 500px;
+  }
+  & ul {
+    margin: 0;
+  }
+  & > ul > li {
+    display: inline-block;
+    margin: 0 24px 0 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+  & > ul > li > a.active {
+    color: $white;
+    border-bottom: 1px solid $copper;
+    transition: 200ms ease-in;
+  }
+}
+.fade-in {
+  animation: fadeIn 600ms ease-in forwards;
+  opacity: 0;
+}
+
+.intro {
+  min-height: 100vh;
+  position: relative;
+  @include linear-gradient(top, transparent, $blue 90%);
+  &::after {
+    content: '';
+    background-image: url('assets/img/splash-clear.svg');
+    @include background-cover;
+    @include opacity(1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  &__statement {
+    @include span-columns(8 of 8);
+    @include font-size(3.4);
+    display: block;
+    font-family: $noe;
+    margin: 0;
+  }
+  @media screen and (min-width: $medium-break) {
+    &__statement {
+      @include span-columns(6 of 8);
+      @include font-size(5.2);
+      line-height: 1.375;
+    }
+  }
+  &__list {
+    float: left;
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0 0;
+    & > li {
+      display: inline-block;
+      float: left;
+      margin: 9px 24px 0 0;
+    }
+    & > li:last-child {
+      margin-right: 0;
+    }
+  }
+  &__link {
+    font-family: $circ;
+    @include font-size(2.1);
+  }
+}
+// Intro Animations
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.is-first {
+  opacity: 0;
+  animation: fadeUp 600ms ease-in forwards;
+  animation-delay: 300ms;
+}
+.is-second {
+  opacity: 0;
+  animation: fadeUp 600ms ease-in forwards;
+  animation-delay: 1500ms;
+}
+.is-third {
+  opacity: 0;
+  animation: fadeUp 600ms ease-in forwards;
+  animation-delay: 1900ms;
+}
+.is-fourth {
+  opacity: 0;
+  animation: fadeUp 600ms ease-in forwards;
+  animation-delay: 2300ms;
+}
+.is-fifth {
+  opacity: 0;
+  animation: fadeUp 600ms ease-in forwards;
+  animation-delay: 2700ms;
+}
+.is-last {
+  opacity: 0;
+  animation: fadeUp 1800ms ease-in forwards;
+  animation-delay: 3000ms;
+}
+
+.intro__list {
+  & > li {
+    opacity: 0;
+  }
+  & > li:nth-child(1) {
+    animation: fadeUp 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 4000ms;
+  }
+  & > li:nth-child(2) {
+    animation: fadeUp 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 4400ms;
+  }
+  & > li:nth-child(3) {
+    animation: fadeUp 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 4800ms;
+  }
+  & > li:nth-child(4) {
+    animation: fadeUp 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 5200ms;
+  }
+
+}
+
+.about {
+  &__sub-title {
+    color: rgba(244, 244, 244, 0.5);
+    margin-top: 8px;
+  }
+  &__professional,
+  &__technical {
+    @include row;
+    margin-bottom: 36px;
+  }
+  &__personal {
+    @include row;
+  }
+  &__statement {
+    margin-bottom: 24px;
+    & a {
+      @include font-size(1.6);
+      line-height: 1.6;
+    }
+  }
+}
+
+.cv {
+  min-height: 100vh;
+  &__row {
+    @include row;
+    margin-bottom: 36px;
+  }
+  &__row--education {
+    padding-top: 96px;
+  }
+  &__detail {
+    @include font-size(2.1);
+    font-family: $circ, sans-serif;;
+    line-height: 1;
+    margin: 24px 0 8px 0;
+    z-index: 3;
+    &--positon {
+      color: rgba(244, 244, 244, 0.5);
+      margin-top: 8px;
+    }
+    &--time {
+      @include font-size(1.8);
+      color: rgba(244, 244, 244, 0.25);
+      margin-top: 6px;
+    }
+  }
+}
+
+
+.work {
+
+  &__row {
+    @include row;
+    margin-bottom: 36px;
+  }
+}
+
+
+//       color: rgba(218, 164, 95, 0.65);
+
+// Padding
+.about, .work, .cv, .contact {
+  background: $blue;
+  padding: 24px 0;
+  @media screen and (min-width:$medium-break) {
+    padding: 48px 0;
+  }
+}
+.contact {
+  background-color: $blue;
+  position: relative;
+  padding-bottom: 48px;
+  @media screen and (min-width:$medium-break) {
+    padding-bottom: 96px;
+  }
+  &::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+  }
+  & .right a {
+    border-bottom: none;
+  }
+}
+.icon {
+  height: 32px;
+  width: auto;
+  fill: $copper;
+  transition: 200ms ease-in;
+  &:hover,
+  &:focus {
+    transition: 200ms ease-in;
+    fill: $white;
+  }
+  &--email {
+    margin-right: 16px;
+  }
+  &--tweet {
+    height: 30px;
+  }
+}
+
+.cover-letter {
+	background: $blue;
+	&__content {
+		@include span-columns(6 of 6);
+		@media screen and (min-width:$medium-break) {
+			@include span-columns(4 of 6);
+			@include shift(1);
+		}
+		& p {
+			margin-bottom: 42px;
+			line-height: 1.75;
+		}
+	}
+}
+
+// Columns
+.left {
+  @include span-columns(6 of 6);
+}
+.right {
+  @include span-columns(6 of 6);
+}
+.third {
+  @include span-columns(6 of 6);
+}
+@media screen and (min-width:$medium-break) {
+  .left {
+    @include span-columns(3 of 6);
+  }
+  .right {
+    @include span-columns(3 of 6);
+    &--contact {
+      @include shift(3);
+    }
+  }
+  .third {
+    @include span-columns(2 of 6);
+  }
+}

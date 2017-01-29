@@ -1,0 +1,15 @@
+{
+  "directory": "public/components",
+  "name": "timbreeze",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "bourbon": "^4.2.7",
+    "flickity": "^2.0.4",
+    "font-awesome": "^4.6.3",
+    "bootstrap": "^3.3.7",
+    "sass-burger": "^1.3.1",
+    "angled-edges": "^1.1.2",
+    "sassline": "^2.1.2"
+  }
+}
